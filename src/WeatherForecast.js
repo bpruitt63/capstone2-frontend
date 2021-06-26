@@ -1,6 +1,7 @@
 import React from 'react';
 import WeatherDaily from './WeatherDaily';
 
+/** Component showing 16 day weather forecast for specified location */
 function WeatherForecast({weather}) {
  
     /** Gives loading or error message if weather prop is
@@ -11,7 +12,7 @@ function WeatherForecast({weather}) {
     if (weather === 'Bad location') {
         return (
             <div>
-                <p>That place don't exist!</p>
+                <p>That place doesn't exist!</p>
             </div>
         );
     };

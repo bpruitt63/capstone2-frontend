@@ -76,7 +76,9 @@ function App() {
       <Routes username={username} 
               updateCurrentUser={updateCurrentUser}
               weather={weather}
-              longLat={longLat} />
+              longLat={longLat}
+              units={units}
+              setWeather={setWeather} />
       <Attributions />
     </div>
   );

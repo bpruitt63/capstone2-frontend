@@ -3,7 +3,10 @@ import countryCodes from './static/countryCodes';
 import {useHandleChange} from './hooks';
 import Errors from './Errors';
 
-function WeatherForm({location, updateLocation}) {
+/** Changes current location in state and local storage without updating
+ * user information in database.
+ */
+function LocationForm({location, updateLocation}) {
 
     const [data, handleChange, setData] = useHandleChange(location);
     const [previousData, setPreviousData] = useState();
@@ -15,7 +18,7 @@ function WeatherForm({location, updateLocation}) {
     };
 
     /** Validates zip code and updates location data in state 
-     * and local storage, without chaning user database info */
+     * and local storage, without changing user database info */
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!data.zipCode || data.zipCode.length < 3 || data.zipCode.length > 12) {
@@ -52,4 +55,4 @@ function WeatherForm({location, updateLocation}) {
     )
 };
 
-export default WeatherForm;
+export default LocationForm;

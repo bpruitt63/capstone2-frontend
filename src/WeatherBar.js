@@ -1,6 +1,10 @@
 import React from 'react';
-import WeatherForm from './WeatherForm';
+import LocationForm from './LocationForm';
 
+/** Component displayed at top of all pages, showing today's weather 
+ * for current location.  Includes form component to update location for 
+ * weather and trip planner searches
+ */
 function WeatherBar({location, updateLocation, weather}) {
 
     /** Gives loading or error message if weather prop is
@@ -12,7 +16,7 @@ function WeatherBar({location, updateLocation, weather}) {
         return (
             <div>
                 <p>That place don't exist!</p>
-                <WeatherForm location={location}
+                <LocationForm location={location}
                             updateLocation={updateLocation} />
             </div>
         );
@@ -31,7 +35,7 @@ function WeatherBar({location, updateLocation, weather}) {
             <p>Low: {w.low_temp}, feels like {w.app_min_temp}</p>
             <p>Precipitation chance: {w.pop}%</p>
             <p>Wind: {w.wind_spd}mph {w.wind_cdir}, gust speed {w.wind_gust_spd}mph</p>
-            <WeatherForm location={location}
+            <LocationForm location={location}
                             updateLocation={updateLocation} />
         </div>
     );

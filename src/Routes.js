@@ -8,7 +8,7 @@ import ProfileForm from './ProfileForm';
 import WeatherForecast from "./WeatherForecast";
 import TripPlanner from "./TripPlanner";
 
-function Routes({username, updateCurrentUser, weather, longLat}) {
+function Routes({username, updateCurrentUser, weather, longLat, units, setWeather}) {
     return (
         <Switch>
             <Route exact path='/'>
@@ -33,7 +33,10 @@ function Routes({username, updateCurrentUser, weather, longLat}) {
                 <WeatherForecast weather={weather} />
             </Route>
             <Route exact path='/planner' >
-                <TripPlanner longLat={longLat} />
+                <TripPlanner longLat={longLat}
+                                units={units}
+                                username={username}
+                                setWeather={setWeather} />
             </Route>
             <Redirect to='/' />
         </Switch>

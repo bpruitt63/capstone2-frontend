@@ -2,20 +2,22 @@ import React, {useState} from 'react';
 import ReactMapboxGl, {Marker} from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {mapbox} from './ApiKeys';
+import mapboxStyle from './static/mapboxStyle';
 
 const API_KEY = process.env.MAPBOX_API_KEY || mapbox;
 
+/** React-Mapbox-GL map showing location of a specific point of interest */
 function PointMap({longLat, icon_url}) {
 
-    const [lng, setLng] = useState(longLat[0]);
-    const [lat, setLat] = useState(longLat[1]);
-    const [zoom, setZoom] = useState([14]);
+    const [lng] = useState(longLat[0]);
+    const [lat] = useState(longLat[1]);
+    const [zoom] = useState([14]);
 
     const Map = ReactMapboxGl({
         accessToken: API_KEY
     });
 
-    const style = "mapbox://styles/mapbox/streets-v11";
+    const style = mapboxStyle;
     const containerStyle = {height: 400, width: 600};
 
     return (

@@ -5,7 +5,7 @@ import countryCodes from './static/countryCodes';
 import BoateyApi from './BoateyApi';
 import Errors from './Errors';
 
-
+/** Form to register new user */
 function RegisterForm({username, updateCurrentUser}) {
 
     const [isLoading, setIsLoading] = useState(false);

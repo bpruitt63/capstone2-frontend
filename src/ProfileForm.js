@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-//import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 import {useHandleChange, useValidate, useErrors} from './hooks';
 import countryCodes from './static/countryCodes';
 import BoateyApi from './BoateyApi';
 import Errors from './Errors';
 
+/** Form to update user information */
 function ProfileForm({username, updateCurrentUser}) {
 
     const initialState = {zipCode: '', country: '', email: '',
@@ -22,7 +22,7 @@ function ProfileForm({username, updateCurrentUser}) {
 
             /** Redirect to login page if not logged in */
             if (!username) {
-                history.push('/');
+                history.push('/login');
                 return false;
             };
 

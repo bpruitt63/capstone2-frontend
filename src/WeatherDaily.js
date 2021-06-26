@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeReadableDate} from './static/helpers';
 
+/** Component for a single day's weather forecast */
 function WeatherDaily({daily}) {
 
     const ICON_URL = 'https://www.weatherbit.io/static/img/icons/'

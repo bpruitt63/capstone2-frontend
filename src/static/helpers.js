@@ -9,3 +9,11 @@ export function makeReadableDate(date) {
     const year = date.slice(0, 4);
     return `${month} ${day}, ${year}`;
 };
+
+/** Converts meters into either kilometers or miles */
+export function calculateDistance(units, distance) {
+    units === 'i' ? distance = distance / 1609 
+        : distance = distance / 1000;
+    distance = distance.toFixed(2);
+    return distance;
+};
