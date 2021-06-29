@@ -1,0 +1,33 @@
+.WeatherBar {
+    background-color: rgb(162, 224, 240);
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.WeatherBar div div {
+    background-color: rgb(162, 224, 240);
+    border: none;
+}
+
+.WeatherBar div div div img {
+    width: 100px;
+    margin: -10px 0px;
+}
+
+h5 {
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.card-body {
+    text-align: left;
+    margin: -20px 0px -10px 0px;
+}
+
+.WeatherBarToggle {
+    background-color: rgb(162, 224, 240);
+    border: none;
+}
+
+
+

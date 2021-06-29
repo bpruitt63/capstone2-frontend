@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
+import { useMediaQuery } from 'react-responsive'
+import './static/styles/App.css';
 import Routes from './Routes';
-import Nav from './Nav';
+import NavB from './NavB';
 import WeatherApi from './WeatherApi';
 import WeatherBar from './WeatherBar';
 import Attributions from './Attributions';
+import LocationForm from './LocationForm';
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
   const [weather, setWeather] = useState();
   const [longLat, setLongLat] = useState(JSON.parse(localStorage.getItem("longLat"))
                                       || defaultLongLat);
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   useEffect(() => {
     /** Gets weather from weatherbit API 
@@ -69,10 +72,13 @@ function App() {
 
   return (
     <div className="App">
+      <NavB username={username}
+            isMobile={isMobile} />
       <WeatherBar location={location}
-                  updateLocation={updateLocation}
-                  weather={weather} />
-      <Nav username={username} />
+                  weather={weather}
+                  isMobile={isMobile} />
+      <LocationForm location={location}
+                    updateLocation={updateLocation} />
       <Routes username={username} 
               updateCurrentUser={updateCurrentUser}
               weather={weather}
