@@ -78,7 +78,10 @@ function PointDetails({point, username, isMobile}) {
                                 isMobile={isMobile} />}
             <br/>
             {point.rating && 
-                <p>Marinas.com rating: {point.rating} out of {point.review_count} reviews</p>}
+                <p>
+                    <span className='detailTitle'>
+                        Marinas.com rating:{' '}
+                    </span>{point.rating} out of {point.review_count} reviews</p>}
             <Link to={{pathname: `${point.web_url}`}} target='blank' className='link'>
                     View on Marinas.com
             </Link>
