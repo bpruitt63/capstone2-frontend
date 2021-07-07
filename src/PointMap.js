@@ -7,7 +7,7 @@ import mapboxStyle from './static/mapboxStyle';
 const API_KEY = process.env.MAPBOX_API_KEY || mapbox;
 
 /** React-Mapbox-GL map showing location of a specific point of interest */
-function PointMap({longLat, icon_url}) {
+function PointMap({longLat, icon_url, isMobile}) {
 
     const [lng] = useState(longLat[0]);
     const [lat] = useState(longLat[1]);
@@ -18,7 +18,8 @@ function PointMap({longLat, icon_url}) {
     });
 
     const style = mapboxStyle;
-    const containerStyle = {height: 400, width: 600};
+    const containerStyle = isMobile ? {height: 400, width: 300}
+                                    : {height: 400, width: 600};
 
     return (
         <>

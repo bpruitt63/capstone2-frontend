@@ -1,11 +1,34 @@
 import React from 'react';
+import {Jumbotron} from 'reactstrap';
+import {Link} from 'react-router-dom';
+import './static/styles/Home.css';
 
-function Home() {
+function Home({username}) {
 
     return (
-        <>
-            <p>This is home.  It's a fixer upper.</p>
-        </>
+        <div className='container'>
+            <Jumbotron>
+                <h1>Welcome to Boatey!</h1>
+                <p>The only place to plan your boat trips!
+                    <span><br/>Before you get wet, get Boatey!</span>
+                </p>
+                {username &&
+                    <p>Welcome back, {username}.
+                        <span><br/>
+                            Are you ready to{' '}
+                            <Link to='/planner'>plan a new trip</Link>?
+                        </span>
+                    </p>    
+                }
+                {!username && 
+                    <p>First time?{'  '}
+                        <Link to='/register'>Create a Boatey account</Link>,
+                        <span><br/>
+                            or <Link to='planner'>start trip planning now!</Link>
+                        </span></p>
+                }
+            </Jumbotron>
+        </div>
     );
 };
 

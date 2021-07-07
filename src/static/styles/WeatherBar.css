@@ -16,7 +16,7 @@
 
 h5 {
     padding-bottom: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .card-body {
@@ -27,6 +27,10 @@ h5 {
 .WeatherBarToggle {
     background-color: rgb(162, 224, 240);
     border: none;
+}
+
+.second {
+    padding-top: 30px;
 }
 
 

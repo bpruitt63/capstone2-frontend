@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import './static/styles/Trips.css';
+import {Button} from 'reactstrap';
 import MarinasApi from './MarinasApi';
 import Point from './Point';
 import CurrentTrip from './CurrentTrip';
@@ -11,7 +13,7 @@ import WeatherApi from './WeatherApi';
  * of interest near specified location, and allows logged in users to 
  * create their own trips.
  */
-function TripPlanner({longLat, units, username, setWeather}) {
+function TripPlanner({longLat, units, username, setWeather, isMobile}) {
 
     const [points, setPoints] = useState();
     const [currentTrip, setCurrentTrip] = useState(JSON.parse(localStorage.getItem("currentTrip")) || []);
@@ -41,7 +43,10 @@ function TripPlanner({longLat, units, username, setWeather}) {
         async function getUserTrips() {
             if (username){
                 try {
-                    const trips = await BoateyApi.getUserTrips(username);
+                    let trips = await BoateyApi.getUserTrips(username);
+                    if (!trips[0]) {
+                        trips = 'You have not created any trips yet';
+                    };
                     setUserTrips(trips);
                 } catch (e) {
                     setUserTrips("Can't retrieve trip information");
@@ -56,7 +61,10 @@ function TripPlanner({longLat, units, username, setWeather}) {
         /** Retrieves last saved trips from database */
         async function getRecentTrips() {
             try {
-                const trips = await BoateyApi.getRecentTrips();
+                let trips = await BoateyApi.getRecentTrips();
+                if (!trips[0]) {
+                    trips = 'No trips found';
+                };
                 setRecentTrips(trips);
             } catch (e) {
                 setRecentTrips("Can't retrieve trip information");
@@ -99,81 +107,115 @@ function TripPlanner({longLat, units, username, setWeather}) {
         };
     };
 
-    /** TODO adds newly created trip to saved/recent trips lists */
-    // const addedTrip = (trip) => {
-    //     setUserTrips([trip, ...userTrips]);
-    // };
+    /** Adds newly created trip to saved/recent trips lists */
+    const addTrip = (trip) => {
+        typeof(userTrips) === 'string' ? setUserTrips([trip])
+            : setUserTrips([trip, ...userTrips]);
+        typeof(recentTrips) === 'string' ? setRecentTrips([trip])
+            : setRecentTrips([trip, ...recentTrips]);
+        setShowUserTrips(false);
+        setShowRecentTrips(false);
+        setShowUserTrips(true);
+        setShowRecentTrips(true);
+    };
 
 
     /** Deletes trip from database.  
-     * 
-     * TODO removes trip from saved/recent trips lists
+     * Removes trip from saved/recent trips lists
      */
     const deleteTrip = async (username, tripId) => {
         await BoateyApi.deleteTrip(username, tripId);
-        //const trips = [...userTrips];
-        const trips = [];
-        for (let trip of userTrips) {
-            trips.push({...trip});
-        };
+
+        /** Removes from userTrips */
+        let trips = [...userTrips];
         const removed = trips.findIndex(function(trip) {
             return trip.tripId === tripId;
         });
         trips.splice(removed, 1);
+        if (trips.length === 0) {
+            trips = 'You have not created any trips yet'
+        };
+
+        /** Removes from recentTrips */
+        let recent = [...recentTrips];
+        const removedRecent = recent.findIndex(function(trip) {
+            return trip.tripId === tripId;
+        });
+        if (removedRecent !== -1) recent.splice(removedRecent, 1);
+
+        /** Updates trips arrays and resets shown lists */
         setUserTrips(trips);
+        setRecentTrips(recent);
+        setShowUserTrips(false);
+        setShowRecentTrips(false);
+        setShowUserTrips(true);
+        setShowRecentTrips(true);
     };
 
     return (
-        <div>
+        <div className='container'>
             {!username && 
-                <p>
+                <p className='links'>
                     <Link to='/login'>Login</Link> or{' '}
                     <Link to='/register'>register</Link>{' '}
                     to create your own trips.
                 </p>
             }   
-            {showRecentTrips && 
-                <h3>Recently Created Trips</h3>}
-            {showRecentTrips && recentTrips && 
-                <TripsList trips={recentTrips}
-                            units={units} />}
-            <button onClick={toggleShowRecent}>
-                {showRecentTrips ? 'Hide Recent Trips' : 'Show Recent Trips'}
-            </button>
+            <br/>
+            <div className={showRecentTrips ? 'tripsGroup' : 'notUsed'}>
+                {showRecentTrips && 
+                    <h3 className='tripsTitle'>Recently Created Trips</h3>}
+                {showRecentTrips && recentTrips && 
+                    <TripsList trips={recentTrips}
+                                units={units}
+                                isMobile={isMobile} />}
+                <br/>
+                <Button onClick={toggleShowRecent} className='toggle'>
+                    {showRecentTrips ? 'Hide Recent Trips' : 'Show Recent Trips'}
+                </Button>
+            </div>
             {username &&
                 <div>
-                    {userTrips && showUserTrips &&
-                        <>
-                            <h3>Your Saved Trips</h3>
-                            <TripsList trips={userTrips}
-                                       units={units}
-                                       username={username}
-                                       deleteTrip={deleteTrip} />
-                        </>
-                    }
-                    <button onClick={toggleShowUser}>
-                        {showUserTrips ? 'Hide Saved Trips' : 'Show Saved Trips'}
-                    </button>
+                    <div className={showUserTrips ? 'tripsGroup' : 'notUsed'}>
+                        {userTrips && showUserTrips &&
+                            <>
+                                <h3 className='tripsTitle'>Your Saved Trips</h3>
+                                <TripsList trips={userTrips}
+                                        units={units}
+                                        username={username}
+                                        deleteTrip={deleteTrip}
+                                        isMobile={isMobile} />
+                            </>
+                        }
+                        <br/>
+                        <Button onClick={toggleShowUser} className='toggle'>
+                            {showUserTrips ? 'Hide Saved Trips' : 'Show Saved Trips'}
+                        </Button>
+                    </div>
                     <CurrentTrip currentTrip={currentTrip}
                             deleteCurrentTrip={deleteCurrentTrip}
                             units={units}
-                            username={username} />
+                            username={username}
+                            addTrip={addTrip} />
                 </div>
             }
-            <h3>Nearby Points of Interest</h3>
-            {!points ? <p>Loading...</p>
-                : points === 'API error' ? <p>Error retrieving marina information.  Please try again later</p>
-                : !points[0] ? <p>No points of interest nearby</p> 
-                : points.map(p => 
-                <Point point={p}
-                        key={p.id}
-                        currentTrip={currentTrip}
-                        setCurrentTrip={setCurrentTrip}
-                        username={username}
-                        isSaved={isSaved}
-                        units={units}
-                        searchHere={searchHere} />
-            )}
+            <div className='points'>
+                <h3 className='pointsTitle'>Nearby Points of Interest</h3>
+                {!points ? <p>Loading...</p>
+                    : points === 'API error' ? <p>Error retrieving marina information.  Please try again later</p>
+                    : !points[0] ? <p>No points of interest nearby</p> 
+                    : points.map(p => 
+                    <Point point={p}
+                            key={p.id}
+                            currentTrip={currentTrip}
+                            setCurrentTrip={setCurrentTrip}
+                            username={username}
+                            isSaved={isSaved}
+                            units={units}
+                            searchHere={searchHere}
+                            isMobile={isMobile} />
+                )}
+            </div>
         </div>
     );
 };

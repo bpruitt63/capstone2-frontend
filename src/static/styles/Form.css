@@ -1,0 +1,46 @@
+#country {
+    -webkit-appearance: menulist-button;
+    appearance: menulist-button;
+}
+
+.form-group {
+    margin: 10px 15px;
+}
+
+.Mbutton {
+    margin: 10px 15px;
+    width: 90%;
+}
+
+.input-group-prepend input {
+    margin-bottom: 30px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.mid {
+    margin-bottom: 30px;
+}
+
+.input-group-append button {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.Mform {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 10px 0px;
+}
+
+.button {
+    width: 150px;
+}
+
+.Mlabel {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}

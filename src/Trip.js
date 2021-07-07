@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {Button} from 'reactstrap';
 import Point from './Point';
 import TripRatingForm from './TripRatingForm';
 import { calculateDistance } from './static/helpers';
+import DeleteModal from './DeleteModal';
 
 /** Component for a single saved trip from user's trips or recent trips list */
-function Trip({trip, units, username, deleteTrip}) {
+function Trip({trip, units, username, deleteTrip, isMobile}) {
 
     const [showLocations, setShowLocations] = useState(false);
     const [rating, setRating] = useState();
@@ -17,16 +19,19 @@ function Trip({trip, units, username, deleteTrip}) {
     };
 
     return (
-        <div>
-            <p>
-                {trip.tripName}{' '}-{' '}{distance}{' '}
-                {units === 'i' ? 'mi' : 'km'}
-            </p>
-            {<p>Rating: {rating || trip.tripRating || 'Not rated yet'}</p>}
+        <div className='Trip'>
+            <div className='tripTitle'>
+                <h5>
+                    <span>{trip.tripName}</span>{' '}-{' '}{distance}{' '}
+                    {units === 'i' ? 'mi' : 'km'}
+                </h5>
+                {<p>Rating: {rating || trip.tripRating || 'Not rated yet'}</p>}
+            </div>
             {username &&
                 <TripRatingForm trip={trip}
                                 username={username}
-                                setRating={setRating} />
+                                setRating={setRating}
+                                isMobile={isMobile} />
             }
             {showLocations &&
                 trip.locations.map(l =>
@@ -35,15 +40,17 @@ function Trip({trip, units, username, deleteTrip}) {
                             currentTrip={[]}
                             setCurrentTrip={{}}
                             username={username}
-                            isSaved={isSaved} />
+                            isSaved={isSaved}
+                            isMobile={isMobile} />
                 )}
-            <button onClick={toggleLocations}>
+            <Button onClick={toggleLocations} className='toggle'>
                 {showLocations ? 'Hide Trip' : 'Show Trip'}
-            </button>
+            </Button>
+            <br/>
             {username &&
-                <button onClick={() => deleteTrip(username, trip.tripId)}>
-                    Delete Trip
-                </button>
+                <DeleteModal deleteTrip={deleteTrip}
+                                username={username}
+                                id={trip.tripId} />
             }
         </div>
     );

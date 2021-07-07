@@ -29,10 +29,12 @@ function App() {
         try {
             const w = await WeatherApi.getWeather(location, units);
             setWeather(w);
-            const newLongLat = [parseFloat(w.data.lon), parseFloat(w.data.lat)];
-            setLongLat(newLongLat);
-            localStorage.setItem("longLat", JSON.stringify([w.data.lon, w.data.lat]));
-        } catch (e) {
+            if (w !== 'Bad location') {
+              const newLongLat = [parseFloat(w.data.lon), parseFloat(w.data.lat)];
+              setLongLat(newLongLat);
+              localStorage.setItem("longLat", JSON.stringify([w.data.lon, w.data.lat]));
+            }
+         } catch (e) {
             setWeather('API error');
         };
     };
@@ -72,20 +74,25 @@ function App() {
 
   return (
     <div className="App">
+      <div id={isMobile ? 'mContent-wrap' : 'content-wrap'}>
       <NavB username={username}
             isMobile={isMobile} />
       <WeatherBar location={location}
                   weather={weather}
-                  isMobile={isMobile} />
+                  isMobile={isMobile}
+                  units={units} />
       <LocationForm location={location}
-                    updateLocation={updateLocation} />
+                    updateLocation={updateLocation}
+                    isMobile={isMobile} />
       <Routes username={username} 
               updateCurrentUser={updateCurrentUser}
               weather={weather}
               longLat={longLat}
               units={units}
-              setWeather={setWeather} />
-      <Attributions />
+              setWeather={setWeather}
+              isMobile={isMobile} />
+      </div>
+      <Attributions isMobile={isMobile} />
     </div>
   );
 };

@@ -1,4 +1,6 @@
 import React from 'react';
+import {Button} from 'reactstrap';
+import './static/styles/Trips.css';
 import TripNameForm from './TripNameForm';
 import {calculateDistance} from './static/helpers';
 
@@ -8,7 +10,7 @@ import {calculateDistance} from './static/helpers';
  * Includes button to completely remove trip.
  */
 
-function CurrentTrip({currentTrip, deleteCurrentTrip, units, username}) {
+function CurrentTrip({currentTrip, deleteCurrentTrip, units, username, addTrip}) {
 
     /** Displays distance for trip.  
      * Takes distance from last location in currentTrip array
@@ -20,8 +22,8 @@ function CurrentTrip({currentTrip, deleteCurrentTrip, units, username}) {
     };
     
     return(
-        <div>
-            <h3>Current Trip</h3>
+        <div className='tripsGroup'>
+            <h3 className='pointsTitle'>Current Trip</h3>
             {!currentTrip[0] && 
                 <p>No trip destinations selected</p>
             }
@@ -37,10 +39,15 @@ function CurrentTrip({currentTrip, deleteCurrentTrip, units, username}) {
             {currentTrip[1] &&
                 <TripNameForm currentTrip={currentTrip}
                                 username={username}
-                                deleteCurrentTrip={deleteCurrentTrip} />
+                                deleteCurrentTrip={deleteCurrentTrip}
+                                addTrip={addTrip} />
             }
+            <br/>
             {currentTrip[0] && 
-                <button onClick={deleteCurrentTrip}>Delete Current Trip</button>
+                <Button onClick={deleteCurrentTrip} 
+                        className='toggle'>
+                    Delete Current Trip
+                </Button>
             }
         </div>
     );

@@ -8,11 +8,11 @@ import ProfileForm from './ProfileForm';
 import WeatherForecast from "./WeatherForecast";
 import TripPlanner from "./TripPlanner";
 
-function Routes({username, updateCurrentUser, weather, longLat, units, setWeather}) {
+function Routes({username, updateCurrentUser, weather, longLat, units, setWeather, isMobile}) {
     return (
         <Switch>
             <Route exact path='/'>
-                <Home />
+                <Home username={username} />
             </Route>
             <Route exact path='/register'>
                 <RegisterForm username={username} 
@@ -20,7 +20,8 @@ function Routes({username, updateCurrentUser, weather, longLat, units, setWeathe
             </Route>
             <Route exact path='/login'>
                 <LoginForm username={username}
-                            updateCurrentUser={updateCurrentUser} />
+                            updateCurrentUser={updateCurrentUser}
+                            isMobile={isMobile} />
             </Route>
             <Route exact path='/profile'>
                 <ProfileForm username={username}
@@ -30,13 +31,15 @@ function Routes({username, updateCurrentUser, weather, longLat, units, setWeathe
                 <Logout updateCurrentUser={updateCurrentUser} />
             </Route>
             <Route exact path='/forecast'>
-                <WeatherForecast weather={weather} />
+                <WeatherForecast weather={weather}
+                                    units={units} />
             </Route>
             <Route exact path='/planner' >
                 <TripPlanner longLat={longLat}
                                 units={units}
                                 username={username}
-                                setWeather={setWeather} />
+                                setWeather={setWeather}
+                                isMobile={isMobile} />
             </Route>
             <Redirect to='/' />
         </Switch>

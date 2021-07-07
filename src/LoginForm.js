@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import {Spinner} from 'reactstrap';
 import {Redirect, useHistory} from 'react-router-dom';
+import { Col, Row, Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import './static/styles/Form.css';
 import {useHandleChange, useErrors} from './hooks';
 import Errors from './Errors';
 import BoateyApi from './BoateyApi';
 
-function LoginForm({username, updateCurrentUser}) {
+function LoginForm({username, updateCurrentUser, isMobile}) {
 
     const initialState = {username: '', password: ''}
 
@@ -50,29 +53,84 @@ function LoginForm({username, updateCurrentUser}) {
     };
 
     if (isLoading) {
-        return <p>I'm loading!</p>
+        return <Spinner style={{ width: '3rem', height: '3rem' }} />
     };
 
     return (
-        <>
+        <div className='container'>
             <Errors formErrors={errors}
                     apiErrors={apiErrors} />
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='username'>Username</label>
-                <input type='text'
-                        name='username'
-                        placeholder='Username'
-                        value={data.username}
-                        onChange={handleChange} />
-                <label htmlFor='password'>Password</label>
-                <input type='password'
-                        name='password'
-                        placeholder='Password'
-                        value={data.password}
-                        onChange={handleChange} />
-                <button>Log In</button>
-            </form>
-        </>
+            {isMobile &&
+                <Form onSubmit={handleSubmit} className='Mform'>
+                    <Row>
+                        <Col xs={12} md={5}>
+                            <FormGroup>
+                                <Row>
+                                    <Col xs={5}>
+                                        <Label htmlFor='username'>Username</Label>
+                                    </Col>
+                                    <Col xs={7}>
+                                    <Input type='text'
+                                            name='username'
+                                            id='username'
+                                            placeholder='Username'
+                                            value={data.username}
+                                            onChange={handleChange} />
+                                    </Col>
+                                </Row>
+                            </FormGroup>
+                        </Col>
+                        <Col xs={12} md={5}>
+                            <FormGroup>
+                                <Row>
+                                    <Col xs={5} md={4}>
+                                        <Label htmlFor='password'>Password</Label>
+                                    </Col>
+                                    <Col xs={7} md={8}>
+                                        <Input type='password' 
+                                                name='password'
+                                                id='password'
+                                                placeholder='Password'
+                                                value={data.password}
+                                                onChange={handleChange} />
+                                    </Col>
+                                </Row>
+                            </FormGroup>
+                        </Col>
+                        <Col xs={12} md={2}>
+                            <Button className='Mbutton'>
+                                Log In
+                            </Button>
+                        </Col>
+                    </Row>
+                </Form>
+            }
+
+            {!isMobile && 
+                <Form onSubmit={handleSubmit}>
+                    <InputGroup>
+                        <InputGroupAddon addonType="prepend" >
+                            <Input type='text'
+                                    name='username'
+                                    id='username'
+                                    placeholder='Username'
+                                    value={data.username}
+                                    onChange={handleChange} />
+                        </InputGroupAddon>
+                        <Input type='password' 
+                                name='password'
+                                id='password'
+                                value={data.password}
+                                placeholder='Password'
+                                onChange={handleChange}
+                                className='mid' />
+                        <InputGroupAddon addonType="append" >
+                            <Button className='button'>Log In</Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+                </Form>
+            }
+        </div>
     )
 };
 

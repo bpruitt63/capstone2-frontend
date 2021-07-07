@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
+import {Button, Collapse} from 'reactstrap';
+import './static/styles/Trips.css';
 import PointDetails from './PointDetails';
 import MapboxApi from './MapboxApi';
 import BoateyApi from './BoateyApi';
 import MarinasApi from './MarinasApi';
 
 /** Highest level component for a single point of interest from marinas.com API */
-function Point({point, currentTrip, setCurrentTrip, username, isSaved, units, searchHere}) {
+function Point({point, currentTrip, setCurrentTrip, username, isSaved, units, searchHere, isMobile}) {
 
     const [showDetails, setShowDetails] = useState(false);
     const [retrievedPoint, setRetrievedPoint] = useState();
@@ -63,28 +65,40 @@ function Point({point, currentTrip, setCurrentTrip, username, isSaved, units, se
     };
 
     return (
-        <div>
-            <h4>{point.name || point.locationName}</h4>
-            {point.kind && <p>Location type:  {point.kind[0].toUpperCase() + point.kind.substring(1)}</p>}
+        <div className={isSaved ? 'savedPoint' : 'searchedPoint'}>
+            <h4 className='pointTitle'>{point.name || point.locationName}</h4>
+            {point.kind && 
+                <p>
+                    <span className='detailTitle'>
+                        Location type:{' '}
+                    </span>
+                    {point.kind[0].toUpperCase() + point.kind.substring(1)}
+                </p>
+            }
+            <Collapse isOpen={showDetails}>
+                {showDetails && (point.kind || retrievedPoint) &&
+                    <PointDetails point={isSaved ? retrievedPoint : point}
+                                    username={username}
+                                    isMobile={isMobile} />}
+            </Collapse>
             {searchHere && 
-                <button onClick={() => searchHere(coordinates, units)}>
+                <Button onClick={() => searchHere(coordinates, units)}
+                        className='pointButton'>
                     Center Search Here
-                </button>}
-            <button onClick={toggle}>
+                </Button>}
+            <Button onClick={toggle} className='pointButton'>
                 {showDetails ? 'Hide Details' : 'Show Details'}
-            </button>
+            </Button>
             {username && !isSaved &&
-                <button onClick={currentTrip[0] && 
+                <Button className='pointButton'
+                        onClick={currentTrip[0] && 
                             currentTrip[currentTrip.length - 1].id === point.id ? 
                                 removePoint
                             : addPoint}>
                     {currentTrip[0] && currentTrip[currentTrip.length - 1].id === point.id ? 'Remove From Trip'
                         : currentTrip[0] ? 'Add to Trip' 
                         : 'Launch New Trip'}
-                </button>}
-            {showDetails && (point.kind || retrievedPoint) &&
-                <PointDetails point={isSaved ? retrievedPoint : point}
-                                username={username} />}
+                </Button>}
         </div>
     );
 };

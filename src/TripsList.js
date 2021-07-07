@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {Button} from 'reactstrap';
 import Trip from './Trip';
 
 /** Displays list of trips retrieved from database */
-function TripsList({trips, units, username, deleteTrip}) {
+function TripsList({trips, units, username, deleteTrip, isMobile}) {
 
-    const [visibleTrips, setVisibleTrips] = useState(trips.slice(0, 5));
+    const [visibleTrips, setVisibleTrips] = useState(
+        trips.length < 6 ? trips : trips.slice(0, 5));
 
     /** Shows error message if trips object not returned */
     if (typeof(trips) === 'string') {
@@ -21,16 +23,17 @@ function TripsList({trips, units, username, deleteTrip}) {
 
     return(
         <>
-            {visibleTrips.map(t => 
+            {visibleTrips && visibleTrips.map(t => 
                 <Trip key={t.tripId}
                         units={units}
                         trip={t}
                         username={username}
-                        deleteTrip={deleteTrip} />)}
+                        deleteTrip={deleteTrip}
+                        isMobile={isMobile} />)}
             {trips.length > 5 && 
-                <button onClick={toggleShowAll}>
+                <Button onClick={toggleShowAll} className='toggle'>
                     {visibleTrips.length > 5 ? 'Show Fewer' : 'Show All'}
-                </button>
+                </Button>
             }
         </>
     )

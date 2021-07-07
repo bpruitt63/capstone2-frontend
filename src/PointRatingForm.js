@@ -1,11 +1,13 @@
 import React from 'react';
+import { Button, Form, Label, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import './static/styles/Trips.css';
 import {useHandleChange, useErrors} from './hooks';
 import BoateyApi from './BoateyApi';
 import Errors from './Errors';
 
 /** Form for rating a specific point.  1 to 5, whole number ratings */
 
-function PointRatingForm({point, username, userRating, setUserRating, setOverallRating}) {
+function PointRatingForm({point, username, userRating, setUserRating, setOverallRating, isMobile}) {
 
     const initialState = userRating && userRating.length === 1 ? 
                             {rating: userRating} : {rating: 3};
@@ -41,22 +43,57 @@ function PointRatingForm({point, username, userRating, setUserRating, setOverall
     };
 
     return (
-        <>
+        <div className='ratingForm'>
             <Errors apiErrors={apiErrors} />
-            <form onSubmit={handleSubmit}>
-                <label htmlFor='rating'>Rate This Location: </label>
-                <select name='rating'
-                        value={data.rating}
-                        onChange={handleChange}>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                </select>
-                <button>Submit Rating</button>
-            </form>
-        </>
+            <Form onSubmit={handleSubmit}>
+                {!isMobile && 
+                    <InputGroup>
+                        <InputGroupAddon addonType="prepend">
+                            <InputGroupText className='rate'>
+                                <Label htmlFor={`${id}Rating`}>Rate This Location: </Label>
+                            </InputGroupText>
+                        </InputGroupAddon>
+                        <Input type='select' 
+                                name='rating'
+                                id={`${id}Rating`}
+                                className='ratingInput'
+                                value={data.rating}
+                                onChange={handleChange}>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                        </Input>
+                        <InputGroupAddon addonType="append" >
+                            <Button>Submit Rating</Button>
+                        </InputGroupAddon>
+                    </InputGroup>
+                }
+                {isMobile &&
+                    <>
+                        <Label htmlFor={`${id}MRating`} className='detailTitle'>
+                            Rate This Location
+                        </Label>
+                        <br/>
+                        <Input type='select' 
+                                name='rating'
+                                id={`${id}MRating`}
+                                className='mRatingInput'
+                                value={data.rating}
+                                onChange={handleChange}>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                        </Input>
+                        <br/>
+                        <Button>Submit Rating</Button>
+                    </>
+                }
+            </Form>
+        </div>
     );
 };
 

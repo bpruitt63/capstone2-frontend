@@ -5,3 +5,12 @@
 .Marker {
   width: 40px;
 }
+
+body {
+  background: url('../images/open_water.jpg') no-repeat center fixed;
+  background-size: cover;
+}
+
+.Errors div {
+  padding: 5px;
+}

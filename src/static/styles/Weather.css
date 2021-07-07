@@ -1,0 +1,28 @@
+.card {
+    padding: 10px 0px 0px 20px;
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.openCard {
+    text-align: center !important;
+}
+
+.closedImg, .closedCard p {
+    display: inline-block;
+    text-align: center;
+}
+
+.closedImg {
+    width: 70px;
+}
+
+.openImg {
+    width: 120px;
+}
+
+.WeatherToggle {
+    background: rgba(255, 255, 255, 0) !important;
+    border: none !important;
+    color: black !important;
+}
+

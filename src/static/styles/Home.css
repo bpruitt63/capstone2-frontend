@@ -1,0 +1,19 @@
+.container {
+    text-align: center;
+}
+
+.jumbotron {
+    display: inline-block;
+    width: 85%;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+}
+
+.jumbotron h1 {
+    font-size: 6vw;
+    margin: 20px 0px;
+}
+
+.jumbotron p a, .jumbotron p span a {
+    text-decoration: none;
+}
