@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {marinas} from './ApiKeys';
+//import {marinas} from './ApiKeys';
 
 const BASE_URL = 'https://api.marinas.com/v1/';
-const API_KEY = process.env.MARINAS_API_KEY || marinas;
+const API_KEY = process.env.MARINAS_API_KEY;
 
 class MarinasApi {
 
