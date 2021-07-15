@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import ReactMapboxGl, {Marker} from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {mapbox} from './ApiKeys';
+//import {mapbox} from './ApiKeys';
 import mapboxStyle from './static/mapboxStyle';
 
-const API_KEY = process.env.MAPBOX_API_KEY || mapbox;
+const API_KEY = process.env.MAPBOX_API_KEY;
 
 /** React-Mapbox-GL map showing location of a specific point of interest */
 function PointMap({longLat, icon_url, isMobile}) {
