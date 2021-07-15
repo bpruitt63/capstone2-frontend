@@ -1,7 +1,7 @@
 import axios from "axios";
 //import {weatherbit} from './ApiKeys';
 
-const BASE_URL = "http://api.weatherbit.io/v2.0/forecast/daily";
+const BASE_URL = "https://api.weatherbit.io/v2.0/forecast/daily";
 const API_KEY = process.env.WEATHERBIT_API_KEY;
 
 class WeatherApi {
