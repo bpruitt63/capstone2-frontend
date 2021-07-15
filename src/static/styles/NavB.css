@@ -12,18 +12,18 @@
 }
 
 a.inactive {
-    color: white;
+    color: white !important;
 }
 
 a.active {
-    color: lightslategray;
+    color: lightslategray !important;
 }
 
 a.inactive:hover {
-    color: lightslategray;
+    color: lightslategray !important;
 }
 
 a.active:hover {
-    color: white;
+    color: white !important;
 }
 
