@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <p
+      class="links"
+    >
+      <a
+        href="/login"
+      >
+        Login
+      </a>
+       or 
+      <a
+        href="/register"
+      >
+        register
+      </a>
+       to create your own trips.
+    </p>
+    <br />
+    <div
+      class="notUsed"
+    >
+      <br />
+      <button
+        class="toggle btn btn-secondary"
+        type="button"
+      >
+        Show Recent Trips
+      </button>
+    </div>
+    <div
+      class="points"
+    >
+      <h3
+        class="pointsTitle"
+      >
+        Nearby Points of Interest
+      </h3>
+      <div
+        class="searchedPoint"
+      >
+        <h4
+          class="pointTitle"
+        >
+          Test Location
+        </h4>
+        <p>
+          <span
+            class="detailTitle"
+          >
+            Location type: 
+          </span>
+          Marina
+        </p>
+        <div
+          class="collapse"
+        />
+        <button
+          class="pointButton btn btn-secondary"
+          type="button"
+        >
+          Center Search Here
+        </button>
+        <button
+          class="pointButton btn btn-secondary"
+          type="button"
+        >
+          Show Details
+        </button>
+      </div>
+      <div
+        class="searchedPoint"
+      >
+        <h4
+          class="pointTitle"
+        >
+          Test Location 2
+        </h4>
+        <p>
+          <span
+            class="detailTitle"
+          >
+            Location type: 
+          </span>
+          Ramp
+        </p>
+        <div
+          class="collapse"
+        />
+        <button
+          class="pointButton btn btn-secondary"
+          type="button"
+        >
+          Center Search Here
+        </button>
+        <button
+          class="pointButton btn btn-secondary"
+          type="button"
+        >
+          Show Details
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

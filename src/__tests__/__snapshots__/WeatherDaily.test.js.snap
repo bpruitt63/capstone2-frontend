@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <div
+      class="closedCard card-body"
+    >
+      <h5
+        class="card-title"
+      >
+        January 01, 2012
+      </h5>
+      <div
+        class="row"
+      >
+        <div
+          class="col-3"
+        >
+          <img
+            alt="test description"
+            class="closedImg"
+            src="https://www.weatherbit.io/static/img/icons/none.png"
+          />
+        </div>
+        <div
+          class="col-2 col-md-3"
+        >
+          <p
+            class="card-text"
+          >
+            High
+            <span>
+              <br />
+              80
+            </span>
+          </p>
+        </div>
+        <div
+          class="col-2 col-md-3"
+        >
+          <p
+            class="card-text"
+          >
+            Wind
+            <span>
+              <br />
+              10km/h N
+            </span>
+          </p>
+        </div>
+        <div
+          class="col-5 col-md-3"
+        >
+          <button
+            class="dropdown-toggle WeatherToggle btn btn-secondary"
+            type="button"
+          >
+            See More
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="collapse"
+    >
+      <div
+        class="openCard card-body"
+      >
+        <h5
+          class="card-title"
+        >
+          January 01, 2012
+        </h5>
+        <img
+          alt="test description"
+          class="openImg"
+          src="https://www.weatherbit.io/static/img/icons/none.png"
+        />
+        <p
+          class="card-text"
+        >
+          test description
+        </p>
+        <p
+          class="card-text"
+        >
+          Precipitation chance: 15%
+        </p>
+        <p
+          class="card-text"
+        >
+          High: 80, feels like 90
+        </p>
+        <p
+          class="card-text"
+        >
+          Low: 60, feels like 55
+        </p>
+        <p
+          class="card-text"
+        >
+          Wind: 10km/h N, gust speed 15km/h 
+        </p>
+        <button
+          class="dropdown-toggle WeatherToggle btn btn-secondary"
+          type="button"
+        >
+          See Less
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

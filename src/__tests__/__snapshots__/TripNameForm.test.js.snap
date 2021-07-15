@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Errors"
+  />
+  <form
+    class="tripNameForm"
+  >
+    <div
+      class="input-group"
+    >
+      <input
+        class="form-control"
+        name="name"
+        placeholder="Trip Name"
+        type="text"
+        value=""
+      />
+      <div
+        class="input-group-append"
+      >
+        <button
+          class="btn btn-secondary"
+        >
+          Save Trip
+        </button>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;

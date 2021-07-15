@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ratingForm"
+  >
+    <div
+      class="Errors"
+    />
+    <form
+      class=""
+    >
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="rate input-group-text"
+          >
+            <label
+              class=""
+              for="testRating"
+            >
+              Rate This Location: 
+            </label>
+          </span>
+        </div>
+        <select
+          class="ratingInput form-control"
+          id="testRating"
+          name="rating"
+        >
+          <option
+            value="1"
+          >
+            1
+          </option>
+          <option
+            value="2"
+          >
+            2
+          </option>
+          <option
+            value="3"
+          >
+            3
+          </option>
+          <option
+            value="4"
+          >
+            4
+          </option>
+          <option
+            value="5"
+          >
+            5
+          </option>
+        </select>
+        <div
+          class="input-group-append"
+        >
+          <button
+            class="btn btn-secondary"
+          >
+            Submit Rating
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

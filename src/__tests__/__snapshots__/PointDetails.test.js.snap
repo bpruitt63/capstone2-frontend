@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <ul>
+    <span>
+      Fuel available
+    </span>
+    <li>
+      Diesel:  No
+    </li>
+    <li>
+      Gas:  Yes
+    </li>
+    <li>
+      Propane:  No
+    </li>
+  </ul>
+  <br />
+  <a
+    class="link"
+    href="https://google.com"
+    target="blank"
+  >
+    View on Marinas.com
+  </a>
+  <button
+    class="pointButton btn btn-secondary"
+    type="button"
+  >
+    Show Map
+  </button>
+  <br />
+</DocumentFragment>
+`;

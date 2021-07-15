@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="jumbotron"
+    >
+      <h1>
+        Welcome to Boatey!
+      </h1>
+      <p>
+        The only place to plan your boat trips!
+        <span>
+          <br />
+          Before you get wet, get Boatey!
+        </span>
+      </p>
+      <p>
+        First time?  
+        <a
+          href="/register"
+        >
+          Create a Boatey account
+        </a>
+        ,
+        <span>
+          <br />
+          or 
+          <a
+            href="/planner"
+          >
+            start trip planning now!
+          </a>
+        </span>
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

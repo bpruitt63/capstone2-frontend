@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="WeatherBar"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="col-3 align-self-start"
+        >
+          <img
+            alt="test description"
+            class="WeatherBarImage"
+            src="https://www.weatherbit.io/static/img/icons/none.png"
+          />
+          <p>
+            test description
+          </p>
+        </div>
+        <div
+          class="col-9"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="row"
+            >
+              <h5
+                class="col-8"
+              >
+                Today's weather for testCity, OH.
+              </h5>
+            </div>
+            <div
+              class="col-3 align-self-start"
+            >
+              <p>
+                High: 80
+              </p>
+              <p
+                class="test"
+              >
+                Feels like: 90
+              </p>
+            </div>
+            <div
+              class="col-3 align-self-start"
+            >
+              <p>
+                Low: 60
+              </p>
+              <p>
+                Feels like: 55
+              </p>
+            </div>
+            <div
+              class="col-3 align-self-start"
+            >
+              <p>
+                Precipitation:
+              </p>
+              <p>
+                15%
+              </p>
+            </div>
+            <div
+              class="col-3 align-self-start"
+            >
+              <p>
+                Wind: 10km/h N
+              </p>
+              <p>
+                Gust: 15km/h 
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

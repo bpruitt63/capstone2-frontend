@@ -1,5 +1,5 @@
 
-/** Changes date from yyyy-mm-dd to Month/dd/yyyy */
+/** Changes date from yyyy-mm-dd to Month dd, yyyy */
 export function makeReadableDate(date) {
     const months = {'01': 'January', '02': 'February', '03': 'March', '04': 'April',
                     '05': 'May', '06': 'June', '07': 'July', '08': 'August',
