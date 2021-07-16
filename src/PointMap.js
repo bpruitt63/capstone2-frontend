@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import ReactMapboxGl, {Marker} from 'react-mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 //import {mapbox} from './ApiKeys';
 import mapboxStyle from './static/mapboxStyle';
