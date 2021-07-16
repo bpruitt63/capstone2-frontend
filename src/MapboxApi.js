@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 //import {mapbox} from './ApiKeys';
 
-mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
 class MapboxApi {
 
