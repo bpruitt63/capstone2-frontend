@@ -1,70 +1,17 @@
-# Getting Started with Create React App
+# Boatey
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed at https://boatey.herokuapp.com/ 
 
-## Available Scripts
+Front end built with create-react-app, deployed on Heroku.  Node.js back end, also deployed on Heroku.
 
-In the project directory, you can run:
+A website to help boaters plan boating trips.  There are two main features:  First, a weather app that tells the current day's weather on the top of each page, as well as a 16 day weather forecast.  Second, a "trip planner" that lists all on-water points of interest near the user's location or a location of their choosing.  Users can view (and rate if logged in) the various points of interest, and create trips from point to point.  The site will log the path of the trip and the distance, and store it in the database so it can be viewed, and also rated by its creator.
 
-### `npm start`
+All users are able to use all weather functionality.  Unregistered users may view points of interest and trips recently saved by other users.  Must register and be logged in to create and save your own trip, or to rate points of interest or trips.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Local storage is used to remember a user's selected location (if it is not the same location they are registered from), as well as the path of the trip a logged in user has started planning without saving to the database.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Test files are in __tests __ folder.  Run with NPM test.
 
-### `npm test`
+Multiple APIs are in use.  weatherbit.io API is used for all weather related information.  marinas.com API is used for points of interest.  React-mapbox-gl along with mapbox-gl-js are used for showing points of interest on maps, as well as calculating distance between points.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+There is also a boatey-backend database hosted at https://boatey-backend.herokuapp.com/.  This stores all back end information for Boatey.  Tables include users (user credentials, location, and preferred units of measurement), locations (name and latitude/longitude of points of interest that have been included in a saved trip or rated by a user), location_ratings (each rating for a location and the user who rated it), trips (name and distance of a saved trip), trip_locations (IDs of each location and the trip it is visited in, and the order it appears in that trip), and user_trips (trip ID, user who created the trip, and the rating that user gave to the trip, if any).  Back end files are at https://github.com/bpruitt63/capstone2-backend
