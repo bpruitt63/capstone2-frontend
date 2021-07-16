@@ -113,10 +113,10 @@ function TripPlanner({longLat, units, username, setWeather, isMobile}) {
             : setUserTrips([trip, ...userTrips]);
         typeof(recentTrips) === 'string' ? setRecentTrips([trip])
             : setRecentTrips([trip, ...recentTrips]);
-        setShowUserTrips(false);
-        setShowRecentTrips(false);
-        setShowUserTrips(true);
-        setShowRecentTrips(true);
+        setShowUserTrips(!showUserTrips);
+        setShowRecentTrips(!showRecentTrips);
+        setShowUserTrips(!showUserTrips);
+        setShowRecentTrips(!showRecentTrips);
     };
 
 
@@ -146,10 +146,10 @@ function TripPlanner({longLat, units, username, setWeather, isMobile}) {
         /** Updates trips arrays and resets shown lists */
         setUserTrips(trips);
         setRecentTrips(recent);
-        setShowUserTrips(false);
-        setShowRecentTrips(false);
-        setShowUserTrips(true);
-        setShowRecentTrips(true);
+        setShowUserTrips(!showUserTrips);
+        setShowRecentTrips(!showRecentTrips);
+        setShowUserTrips(!showUserTrips);
+        setShowRecentTrips(!showRecentTrips);
     };
 
     return (

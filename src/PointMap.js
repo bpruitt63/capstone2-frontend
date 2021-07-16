@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 //import {mapbox} from './ApiKeys';
 import mapboxStyle from './static/mapboxStyle';
 
-const API_KEY = process.env.MAPBOX_API_KEY;
+const API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 /** React-Mapbox-GL map showing location of a specific point of interest */
 function PointMap({longLat, icon_url, isMobile}) {
