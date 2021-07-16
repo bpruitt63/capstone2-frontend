@@ -4,6 +4,9 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 //import {mapbox} from './ApiKeys';
 import mapboxStyle from './static/mapboxStyle';
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
 const API_KEY = process.env.REACT_APP_MAPBOX_API_KEY;
 
 /** React-Mapbox-GL map showing location of a specific point of interest */
