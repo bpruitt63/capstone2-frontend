@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import './static/styles/Form.css';
 import countryCodes from './static/countryCodes';
+import countriesWithoutPostalCodes from './static/countriesWithoutZip';
 import {useHandleChange} from './hooks';
 import Errors from './Errors';
 
@@ -13,6 +14,9 @@ function LocationForm({location, updateLocation, isMobile}) {
     const [data, handleChange, setData] = useHandleChange(location);
     const [previousData, setPreviousData] = useState();
     const [errors, setErrors] = useState({});
+    // const [searchByZip, setSearchByZip] = useState(
+    //     countriesWithoutPostalCodes.has(location.country) ? false : true
+    // );
 
     if (location !== previousData) {
         setData(location);
@@ -23,12 +27,15 @@ function LocationForm({location, updateLocation, isMobile}) {
      * and local storage, without changing user database info */
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!data.zipCode || data.zipCode.length < 3 || data.zipCode.length > 12) {
+        if (countriesWithoutPostalCodes.has(data.country) && !data.city) {
+            setErrors({error: 'City is required for this country'});
+            return false;
+        } else if (!data.zipCode || data.zipCode.length < 3 || data.zipCode.length > 12) {
             setErrors({error: "Zip/Postal Code must be between 3 and 12 characters"});
             return false;
         } else {
             setErrors({});
-            const newLocation = {zipCode: data.zipCode, country: data.country};
+            const newLocation = {zipCode: data.zipCode, country: data.country, city: data.city};
             updateLocation(newLocation);
         };
     };
@@ -40,26 +47,48 @@ function LocationForm({location, updateLocation, isMobile}) {
             {isMobile &&
                 <Form onSubmit={handleSubmit}>
                     <Row>
-                        <Col xs={12} md={5}>
-                            <FormGroup>
-                                <Row>
-                                    <Col xs={5}>
-                                        <Label htmlFor='zipCode'
-                                                className='Mlabel'>
-                                            Zip/Postal Code
-                                        </Label>
-                                    </Col>
-                                    <Col xs={7}>
-                                    <Input type='text'
-                                            name='zipCode'
-                                            id='zipCode'
-                                            placeholder='Zip/Postal Code'
-                                            value={data.zipCode}
-                                            onChange={handleChange} />
-                                    </Col>
-                                </Row>
-                            </FormGroup>
-                        </Col>
+                        {!countriesWithoutPostalCodes.has(data.country) && 
+                            <Col xs={12} md={5}>
+                                <FormGroup>
+                                    <Row>
+                                        <Col xs={5}>
+                                            <Label htmlFor='zipCode'
+                                                    className='Mlabel'>
+                                                Zip/Postal Code
+                                            </Label>
+                                        </Col>
+                                        <Col xs={7}>
+                                        <Input type='text'
+                                                name='zipCode'
+                                                id='zipCode'
+                                                placeholder='Zip/Postal Code'
+                                                value={data.zipCode}
+                                                onChange={handleChange} />
+                                        </Col>
+                                    </Row>
+                                </FormGroup>
+                            </Col>}
+                            {countriesWithoutPostalCodes.has(data.country) && 
+                            <Col xs={12} md={5}>
+                                <FormGroup>
+                                    <Row>
+                                        <Col xs={5}>
+                                            <Label htmlFor='city'
+                                                    className='Mlabel'>
+                                                City
+                                            </Label>
+                                        </Col>
+                                        <Col xs={7}>
+                                        <Input type='text'
+                                                name='city'
+                                                id='city'
+                                                placeholder='City'
+                                                value={data.city}
+                                                onChange={handleChange} />
+                                        </Col>
+                                    </Row>
+                                </FormGroup>
+                            </Col>}
                         <Col xs={12} md={5}>
                             <FormGroup>
                                 <Row>
@@ -95,14 +124,24 @@ function LocationForm({location, updateLocation, isMobile}) {
             {!isMobile && 
                 <Form onSubmit={handleSubmit}>
                     <InputGroup>
-                        <InputGroupAddon addonType="prepend" >
-                            <Input type='text'
-                                    name='zipCode'
-                                    id='zipCode'
-                                    placeholder='Zip/Postal Code'
-                                    value={data.zipCode}
-                                    onChange={handleChange} />
-                        </InputGroupAddon>
+                        {!countriesWithoutPostalCodes.has(data.country) && 
+                            <InputGroupAddon addonType="prepend" >
+                                <Input type='text'
+                                        name='zipCode'
+                                        id='zipCode'
+                                        placeholder='Zip/Postal Code'
+                                        value={data.zipCode}
+                                        onChange={handleChange} />
+                            </InputGroupAddon>}
+                        {countriesWithoutPostalCodes.has(data.country) && 
+                            <InputGroupAddon addonType="prepend" >
+                                <Input type='text'
+                                        name='city'
+                                        id='city'
+                                        placeholder='City'
+                                        value={data.city}
+                                        onChange={handleChange} />
+                            </InputGroupAddon>}    
                         <Input type='select' 
                                 name='country'
                                 id='country'

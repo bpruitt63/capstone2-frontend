@@ -7,10 +7,11 @@ import WeatherApi from './WeatherApi';
 import WeatherBar from './WeatherBar';
 import Attributions from './Attributions';
 import LocationForm from './LocationForm';
+import countriesWithoutPostalCodes from './static/countriesWithoutZip';
 
 function App() {
 
-  const defaultLocation = {zipCode: "91945", country: "US"};
+  const defaultLocation = {zipCode: "91945", country: "US", city: "San Diego"};
   const defaultLongLat = [-117.0326, 32.7332];
   const [username, setUsername] = useState(localStorage.getItem("username"));
   const [location, setLocation] = useState(JSON.parse(localStorage.getItem("location"))
@@ -27,7 +28,13 @@ function App() {
      */
     async function getWeather() {
         try {
-            const w = await WeatherApi.getWeather(location, units);
+            let w = null;
+            if (!countriesWithoutPostalCodes.has(location.country)) {
+              w = await WeatherApi.getWeatherByZip(location, units);
+            };
+            if (!w || w === 'Bad location') {
+              w = await WeatherApi.getWeatherByCity(location, units);
+            }
             setWeather(w);
             if (w !== 'Bad location') {
               const newLongLat = [parseFloat(w.data.lon), parseFloat(w.data.lat)];
