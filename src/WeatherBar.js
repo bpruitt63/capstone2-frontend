@@ -27,6 +27,8 @@ function WeatherBar({location, weather, isMobile, units}) {
     };
 
     const w = weather.data.data[0];
+    const countryDisplay = Number.isInteger(+weather.data.state_code) ? 
+                            location.country : weather.data.state_code;
     const ICON_URL = 'https://www.weatherbit.io/static/img/icons/'
 
     return (
@@ -45,7 +47,7 @@ function WeatherBar({location, weather, isMobile, units}) {
                             <div className='row'>
                                 <div className='row'>
                                     <h5 className='col-8'>Today's weather for {weather.data.city_name} 
-                                        , {weather.data.state_code || location.country}.</h5>
+                                        , {countryDisplay}.</h5>
                                 </div>
                                 <div className='col-3 align-self-start'>
                                     <p>High: {w.high_temp}</p>
