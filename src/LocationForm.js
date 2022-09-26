@@ -14,9 +14,6 @@ function LocationForm({location, updateLocation, isMobile}) {
     const [data, handleChange, setData] = useHandleChange(location);
     const [previousData, setPreviousData] = useState();
     const [errors, setErrors] = useState({});
-    // const [searchByZip, setSearchByZip] = useState(
-    //     countriesWithoutPostalCodes.has(location.country) ? false : true
-    // );
 
     if (location !== previousData) {
         setData(location);

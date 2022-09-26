@@ -28,7 +28,7 @@ function WeatherBar({location, weather, isMobile, units}) {
 
     const w = weather.data.data[0];
     const countryDisplay = Number.isInteger(+weather.data.state_code) ? 
-                            location.country : weather.data.state_code;
+                            location.country : weather.data.state_code || weather.data.country_code;
     const ICON_URL = 'https://www.weatherbit.io/static/img/icons/'
 
     return (

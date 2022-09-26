@@ -17,10 +17,13 @@ function WeatherForecast({weather, units}) {
         );
     };
 
+    const countryDisplay = Number.isInteger(+weather.data.state_code) ? 
+                            location.country : weather.data.state_code || weather.data.country_code;
+
     return (
         <div className='container'>
             <h3>Upcoming Weather for {weather.data.city_name}
-                , {weather.data.state_code || weather.data.country_code} 
+                , {countryDisplay} 
             </h3>
             {weather.data.data.map((w) => 
                 <WeatherDaily daily={w} key={w.valid_date} units={units} />
