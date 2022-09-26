@@ -18,7 +18,7 @@ function WeatherForecast({weather, units}) {
     };
 
     const countryDisplay = Number.isInteger(+weather.data.state_code) ? 
-                            location.country : weather.data.state_code || weather.data.country_code;
+                            weather.data.country_code : weather.data.state_code;
 
     return (
         <div className='container'>
